@@ -1,0 +1,20 @@
+
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #5E63BA;
+    
+}
+.container {
+    width: 850px;
+    background: #fff;
+    display: flex;
+    gap: 70px;
+    align-items: flex-end;
+    padding: 60px 40px;
+    border-radius: 10px;
+
+}
