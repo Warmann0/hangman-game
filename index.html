@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hang Man</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/word-list.js" defer></script>
     <script defer src="./js/app.js" defer></script>
 </head>
 <body>
 
     <div class="game-modal">
         <div class="content">
-            <img src="LOST" alt="giff">
+            <img src="images/lost.gif" alt="hangman-lost">
             <h4> Game Over! You Suck</h4>
             <p>The correct word was: <b>Answer</b></p>
             <button class="Play-again">Try Again Smarty</button>
@@ -25,21 +26,13 @@
     <div class="container">
         <div class="hangman-box">
         
-            <img src="" alt="hangman img">
+            <img src="images/hangman-0.svg" alt="hangman img">
        
              <h1>Hangman Game</h1>
         </div>
 
         <div class="game-box">
-            <ul class="word-display">
-                <li class="letter"></li>
-                <li class="letter"></li>
-                <li class="letter guessed">a</li>
-                <li class="letter"></li>
-                <li class="letter"></li>
-                <li class="letter"></li>
-                <li class="letter"></li>
-            </ul>
+            <ul class="word-display"></ul>
 
             <h4 class="hint-text">
                 Hint;
