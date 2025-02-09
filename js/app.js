@@ -42,22 +42,53 @@
 /*-------------------------------- Constants --------------------------------*/
 const wordDisplay = document.querySelector(".word-display")
 
+const hangmanImage = document.querySelector(".hangman-box img")
+
+const guessesText = document.querySelector(".guesses-text b")
+
 const keyboardDiv = document.querySelector(".keyboard")
 
+let currentWord, worngGuessCount = 0
+const maxGusses = 6;
 
 const getRandomWord = () => {
    // selecting a word and hint from wordList
    const {word, hint} = wordList[Math.floor(Math.random() * wordList.length)];
+   currentWord = word;
    console.log(word)
    document.querySelector(".hint-text b").innerText = hint;
    wordDisplay.innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("");
 }
 
-// creates keyboard buttons
+
+
+// checking if the letter clicked is within the word
+const initGame = (button, clickedLetter) => {
+   // showing all correct letters on the word-display
+   if(currentWord.includes(clickedLetter)) {
+      [...currentWord].forEach((letter, index) => {
+         if(letter === clickedLetter) {
+            wordDisplay.querySelectorAll("li")[index].innerText = letter;
+            wordDisplay.querySelectorAll("li")[index].classList.add("guessed");
+         }
+      })
+   } 
+   else {
+      // when clicked and letter is wrong update the attamptes and the image
+      worngGuessCount++;
+      hangmanImage.src = `images/hangman-${worngGuessCount}.svg`;
+   }
+   button.disabled = true;
+   guessesText.innerText = `${worngGuessCount} / ${maxGusses}`;
+}
+
+
+// creates keyboard buttons + event listeners
 for (let i = 97; i <= 122; i++) {
     const button = document.createElement("button");
     button.innerText = String.fromCharCode(i)
     keyboardDiv.appendChild(button)
+    button.addEventListener("click", e => initGame(e.target, String.fromCharCode(i)))
  }
  
  getRandomWord ();
