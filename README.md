@@ -28,7 +28,7 @@ This game was built using:
 - **HTML** - Game structure
 - **CSS** - Styling and animations
 
-## 📜 Attributions
+##  Attributions
 
 - [Coding Nepal](https://www.codingnepalweb.com/)
 
@@ -43,4 +43,4 @@ Here are some planned upgrades for the game:
 
 ---
 
-### 🎯 **Enjoy playing, and happy guessing!**
+###  **Enjoy playing, and happy guessing!**
