@@ -50,8 +50,26 @@ const keyboardDiv = document.querySelector(".keyboard")
 
 const gameModal = document.querySelector(".game-modal")
 
-let currentWord, correctLetters = [], worngGuessCount = 0
-const maxGusses = 6;
+const playAgainBtn = document.querySelector(".play-again")
+
+const maxGuesses = 6;
+
+let currentWord, correctLetters , wrongGuessCount
+
+
+
+const resetGame =() => {
+   // resetting everything
+   correctLetters = [];
+   wrongGuessCount = 0;
+   hangmanImage.src = `images/hangman-${wrongGuessCount}.svg`;
+   guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
+   keyboardDiv.querySelectorAll("button").forEach(btn => btn.disabled = false)
+   wordDisplay.innerHTML = currentWord.split("").map(() => `<li class="letter"></li>`).join("");
+   gameModal.classList.remove("show")
+}
+
+
 
 const getRandomWord = () => {
    // selecting a word and hint from wordList
@@ -59,15 +77,15 @@ const getRandomWord = () => {
    currentWord = word;
    console.log(word)
    document.querySelector(".hint-text b").innerText = hint;
-   wordDisplay.innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("");
+   resetGame();
 }
 
 const gameOver = (isVictory) => {
    setTimeout(() => {
-      const modalText = isVictory ? `Boom! you got it ` : `it was `
-      gameModal.querySelector("img").src = `images/${isVictory ? `victory` : `lost`}.gif`;
-      gameModal.querySelector("h4").innerText = `${isVictory ? `congrats!` : `Game Over`}.gif`;
-      gameModal.querySelector("p").innerHTML = `${modalText}`
+      const modalText = isVictory ? `You got it -- it was ` : `OOPSss the word was `
+      gameModal.querySelector("img").src = `images/${isVictory ? `victory` : `lost`}`;
+      gameModal.querySelector("h4").innerText = `${isVictory ? `BOOM!` : `Game Over`}`;
+      gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`;
 
       gameModal.classList.add("show");
    }, 300);
@@ -86,15 +104,18 @@ const initGame = (button, clickedLetter) => {
       })
    } 
    else {
-      // when clicked and letter is wrong update the attamptes and the image
-      worngGuessCount++;
-      hangmanImage.src = `images/hangman-${worngGuessCount}.svg`;
+      // when clicked and letter is wrong update the attempts and the image
+      wrongGuessCount++;
+      hangmanImage.src = `images/hangman-${wrongGuessCount}.svg`;
+      
+
    }
+   
    button.disabled = true;
-   guessesText.innerText = `${worngGuessCount} / ${maxGusses}`;
+   guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
 
    // calling gameOver => if any of this happens
-   if(worngGuessCount === maxGusses) return gameOver(true); 
+   if(wrongGuessCount === maxGuesses) return gameOver(false); 
    if(correctLetters.length === currentWord.length) return gameOver(true); 
 }
 
@@ -108,6 +129,7 @@ for (let i = 97; i <= 122; i++) {
  }
  
  getRandomWord ();
+ playAgainBtn.addEventListener("click", getRandomWord)
  
  /*---------------------------- Variables (state) ----------------------------*/
  
