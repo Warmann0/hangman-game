@@ -48,7 +48,9 @@ const guessesText = document.querySelector(".guesses-text b")
 
 const keyboardDiv = document.querySelector(".keyboard")
 
-let currentWord, worngGuessCount = 0
+const gameModal = document.querySelector(".game-modal")
+
+let currentWord, correctLetters = [], worngGuessCount = 0
 const maxGusses = 6;
 
 const getRandomWord = () => {
@@ -60,7 +62,16 @@ const getRandomWord = () => {
    wordDisplay.innerHTML = word.split("").map(() => `<li class="letter"></li>`).join("");
 }
 
+const gameOver = (isVictory) => {
+   setTimeout(() => {
+      const modalText = isVictory ? `Boom! you got it ` : `it was `
+      gameModal.querySelector("img").src = `images/${isVictory ? `victory` : `lost`}.gif`;
+      gameModal.querySelector("h4").innerText = `${isVictory ? `congrats!` : `Game Over`}.gif`;
+      gameModal.querySelector("p").innerHTML = `${modalText}`
 
+      gameModal.classList.add("show");
+   }, 300);
+}
 
 // checking if the letter clicked is within the word
 const initGame = (button, clickedLetter) => {
@@ -68,6 +79,7 @@ const initGame = (button, clickedLetter) => {
    if(currentWord.includes(clickedLetter)) {
       [...currentWord].forEach((letter, index) => {
          if(letter === clickedLetter) {
+            correctLetters.push(letter)
             wordDisplay.querySelectorAll("li")[index].innerText = letter;
             wordDisplay.querySelectorAll("li")[index].classList.add("guessed");
          }
@@ -80,6 +92,10 @@ const initGame = (button, clickedLetter) => {
    }
    button.disabled = true;
    guessesText.innerText = `${worngGuessCount} / ${maxGusses}`;
+
+   // calling gameOver => if any of this happens
+   if(worngGuessCount === maxGusses) return gameOver(true); 
+   if(correctLetters.length === currentWord.length) return gameOver(true); 
 }
 
 
