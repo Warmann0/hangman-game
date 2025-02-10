@@ -9,7 +9,7 @@ This project was developed as part of the General Assembly Software Development 
 ![Hangman Game Screenshot](https://i.ibb.co/WvbhYfJP/Screenshot-2025-02-10-092203.png)
 
 ##  Getting Started
-Try out the deployed version of the game: **[Play The Game here](link)**
+Try out the deployed version of the game: **[Play The Game here](https://warmann0.github.io/hangman-game/)**
 
 ###  How to Play:
 

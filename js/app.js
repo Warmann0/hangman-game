@@ -54,13 +54,9 @@ const playAgainBtn = document.querySelector(".play-again")
 
 const maxGuesses = 6;
 
-
-/*---------------------------- Variables (state) ----------------------------*/
-
-
 let currentWord, correctLetters , wrongGuessCount
 
-/*---------------------------- => ----------------------------*/
+
 
 const resetGame =() => {
    // resetting everything
@@ -86,10 +82,11 @@ const getRandomWord = () => {
 
 const gameOver = (isVictory) => {
    setTimeout(() => {
-      const modalText = isVictory ? `You got it -- it was ` : `OOPSss the word was `
-      gameModal.querySelector("img").src = `images/${isVictory ? `victory` : `lost`}`;
-      gameModal.querySelector("h4").innerText = `${isVictory ? `BOOM!` : `Game Over`}`;
-      gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`;
+      const modalText = isVictory ? `You got it -- it was` : `OOPSss the word was`;
+gameModal.querySelector("img").src = `images/${isVictory ? "victory" : "lost"}.gif`;
+gameModal.querySelector("h4").innerText = isVictory ? `BOOM!` : `Game Over`;
+gameModal.querySelector("p").innerHTML = `${modalText} <b>${currentWord}</b>`;
+
 
       gameModal.classList.add("show");
    }, 300);
@@ -111,20 +108,18 @@ const initGame = (button, clickedLetter) => {
       // when clicked and letter is wrong update the attempts and the image
       wrongGuessCount++;
       hangmanImage.src = `images/hangman-${wrongGuessCount}.svg`;
+
       
 
    }
    
    button.disabled = true;
-   guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`;
-
+   guessesText.innerText = `${wrongGuessCount} / ${maxGuesses}`; 
    // calling gameOver => if any of this happens
    if(wrongGuessCount === maxGuesses) return gameOver(false); 
    if(correctLetters.length === currentWord.length) return gameOver(true); 
 }
 
-
-playAgainBtn.addEventListener("click", getRandomWord)
 
 // creates keyboard buttons + event listeners
 for (let i = 97; i <= 122; i++) {
@@ -135,16 +130,15 @@ for (let i = 97; i <= 122; i++) {
  }
  
  getRandomWord ();
-
+ playAgainBtn.addEventListener("click", getRandomWord)
+ 
+ /*---------------------------- Variables (state) ----------------------------*/
  
  
+ /*------------------------ Cached Element References ------------------------*/
  
  
-
- 
- 
- 
+ /*-------------------------------- Functions --------------------------------*/
  
  
  /*----------------------------- Event Listeners -----------------------------*/
- 
