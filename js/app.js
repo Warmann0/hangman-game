@@ -124,6 +124,8 @@ const initGame = (button, clickedLetter) => {
 }
 
 
+playAgainBtn.addEventListener("click", getRandomWord)
+
 // creates keyboard buttons + event listeners
 for (let i = 97; i <= 122; i++) {
     const button = document.createElement("button");
@@ -146,4 +148,3 @@ for (let i = 97; i <= 122; i++) {
  
  /*----------------------------- Event Listeners -----------------------------*/
  
- playAgainBtn.addEventListener("click", getRandomWord)
