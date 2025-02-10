@@ -54,10 +54,12 @@ const playAgainBtn = document.querySelector(".play-again")
 
 const maxGuesses = 6;
 
+/*---------------------------- Variables (state) ----------------------------*/
+
 let currentWord, correctLetters , wrongGuessCount
 
 
-
+/*-------------------------------- Functions --------------------------------*/
 const resetGame =() => {
    // resetting everything
    correctLetters = [];
@@ -130,15 +132,16 @@ for (let i = 97; i <= 122; i++) {
  }
  
  getRandomWord ();
+
+/*----------------------------- Event Listeners -----------------------------*/
  playAgainBtn.addEventListener("click", getRandomWord)
  
- /*---------------------------- Variables (state) ----------------------------*/
  
  
- /*------------------------ Cached Element References ------------------------*/
+
  
  
- /*-------------------------------- Functions --------------------------------*/
  
  
- /*----------------------------- Event Listeners -----------------------------*/
+ 
+ 
